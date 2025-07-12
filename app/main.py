@@ -3,8 +3,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routes import recommendation_routes
 
-nltk.download("stopwords")  # Unduh sebelum aplikasi dijalankan
-
 app = FastAPI(
     title="Innovation Recommendation System",
     description="Sistem rekomendasi inovasi berbasis content-based filtering",
