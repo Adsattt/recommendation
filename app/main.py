@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routes import recommendation_routes
@@ -19,7 +20,21 @@ app.add_middleware(
 app.include_router(recommendation_routes.router, prefix="/api/v1")
 
 
+# Health check endpoint
+@app.get("/")
+async def root():
+    return {"message": "Innovation Recommendation System is running"}
+
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
+
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Get port from environment variable or use default
+    port = int(os.environ.get("PORT", 8000))
+
+    uvicorn.run(app, host="0.0.0.0", port=port)
