@@ -1,6 +1,9 @@
 import re
+import nltk
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from nltk.corpus import stopwords
+
+nltk.data.path.append("/opt/render/nltk_data")
 
 
 def preprocess_text(text: str, stop_words=None) -> str:
